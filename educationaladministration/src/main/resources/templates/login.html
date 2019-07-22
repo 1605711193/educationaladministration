@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title></title>
+
+    <link href="asserts/css/signin.css" rel="stylesheet"/>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/1.9.1/jquery.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" />
+
+    <style type="text/css">
+        .help-block {
+            color: red;
+        }
+    </style>
+</head>
+
+<body class="text-center">
+<form class="form-signin" action="" id="from">
+    <img class="mb-4" src="asserts/img/bootstrap-solid.svg" alt="" width="72" height="72"/>
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label class="sr-only" >Username</label>
+    <input type="text" class="form-control" placeholder="Username" id="username"
+           name="name"/>
+    <label class="sr-only">Password</label>
+    <input type="password" class="form-control" placeholder="Password"
+           id="password"
+           name="pwd"
+           style="margin-top: 20px"/>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"/><span></span>
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="button"id="sub">Sign in</button>
+    <span class="help-block"></span>
+    <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
+</form>
+</body>
+
+<script type="text/javascript">
+    $("#sub").click(function () {
+
+        $.ajax({
+            url: "teacher/login",
+            type: "get",
+            async: false,
+            data: $("#from").serializeArray(),
+            contentType: 'application/x-www-form-urlencoded',
+            dataType:"json",
+            success:function (result) {
+                if(result.extend.info == 300){
+                    alert("账号不存在")
+                }else if(result.extend.info == 200){
+                    window.location.href = "teacher/index";
+                }else
+                    alert("密码错误")
+            }
+        })
+    })
+</script>
+
+</html>

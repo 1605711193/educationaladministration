@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hngy.educationaladministration.Mapper.WorkloadMapper">
+  <resultMap id="BaseResultMap" type="com.hngy.educationaladministration.entity.Workload">
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="id_teacher" jdbcType="BIGINT" property="idTeacher" />
+    <result column="year" jdbcType="VARCHAR" property="year" />
+    <result column="term" jdbcType="VARCHAR" property="term" />
+    <result column="classes" jdbcType="VARCHAR" property="classes" />
+    <result column="courseName" jdbcType="VARCHAR" property="coursename" />
+    <result column="classHourOfPlan" jdbcType="VARCHAR" property="classhourofplan" />
+    <result column="jointClass" jdbcType="VARCHAR" property="jointclass" />
+    <result column="extracurricularExperiment" jdbcType="VARCHAR" property="extracurricularexperiment" />
+    <result column="sum1" jdbcType="REAL" property="sum1" />
+    <result column="courseDesign" jdbcType="VARCHAR" property="coursedesign" />
+    <result column="on_campusPractice" jdbcType="VARCHAR" property="onCampuspractice" />
+    <result column="off_campusTraining" jdbcType="VARCHAR" property="offCampustraining" />
+    <result column="GraduationPractice" jdbcType="VARCHAR" property="graduationpractice" />
+    <result column="sum2" jdbcType="REAL" property="sum2" />
+    <result column="sum1AddSum2" jdbcType="REAL" property="sum1addsum2" />
+    <result column="rsrProjectName" jdbcType="VARCHAR" property="rsrprojectname" />
+    <result column="rsrProjectBrief" jdbcType="VARCHAR" property="rsrprojectbrief" />
+    <result column="rsrProjectStatus" jdbcType="VARCHAR" property="rsrprojectstatus" />
+    <result column="rsrConversionWorkload" jdbcType="VARCHAR" property="rsrconversionworkload" />
+    <result column="rsrPProjectLeader" jdbcType="VARCHAR" property="rsrpprojectleader" />
+    <result column="rsrWorkload" jdbcType="REAL" property="rsrworkload" />
+    <result column="sProjectName" jdbcType="VARCHAR" property="sprojectname" />
+    <result column="sProjectBrief" jdbcType="VARCHAR" property="sprojectbrief" />
+    <result column="sProjectStatus" jdbcType="VARCHAR" property="sprojectstatus" />
+    <result column="sConversionWorkload" jdbcType="VARCHAR" property="sconversionworkload" />
+    <result column="sPProjectLeader" jdbcType="VARCHAR" property="spprojectleader" />
+    <result column="sectionVerify" jdbcType="VARCHAR" property="sectionverify" />
+    <result column="instituteVerify" jdbcType="VARCHAR" property="instituteverify" />
+    <result column="subsidyworkload" jdbcType="REAL" property="subsidyworkload" />
+    <result column="totalSum" jdbcType="REAL" property="totalsum" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hngy.educationaladministration.entity.WorkloadWithBLOBs">
+    <result column="bak1" jdbcType="LONGVARCHAR" property="bak1" />
+    <result column="bak2" jdbcType="LONGVARCHAR" property="bak2" />
+    <result column="bak3" jdbcType="LONGVARCHAR" property="bak3" />
+    <result column="bak4" jdbcType="LONGVARCHAR" property="bak4" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, id_teacher, year, term, classes, courseName, classHourOfPlan, jointClass, extracurricularExperiment, 
+    sum1, courseDesign, on_campusPractice, off_campusTraining, GraduationPractice, sum2, 
+    sum1AddSum2, rsrProjectName, rsrProjectBrief, rsrProjectStatus, rsrConversionWorkload, 
+    rsrPProjectLeader, rsrWorkload, sProjectName, sProjectBrief, sProjectStatus, sConversionWorkload, 
+    sPProjectLeader, sectionVerify, instituteVerify, subsidyworkload, totalSum
+  </sql>
+  <sql id="Blob_Column_List">
+    bak1, bak2, bak3, bak4, remark
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.hngy.educationaladministration.entity.WorkloadExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_workload
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.hngy.educationaladministration.entity.WorkloadExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_workload
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.hngy.educationaladministration.entity.WorkloadExample">
+    delete from t_workload
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hngy.educationaladministration.entity.WorkloadWithBLOBs">
+    insert into t_workload (id, id_teacher, year, 
+      term, classes, courseName, 
+      classHourOfPlan, jointClass, extracurricularExperiment, 
+      sum1, courseDesign, on_campusPractice, 
+      off_campusTraining, GraduationPractice, 
+      sum2, sum1AddSum2, rsrProjectName, 
+      rsrProjectBrief, rsrProjectStatus, rsrConversionWorkload, 
+      rsrPProjectLeader, rsrWorkload, sProjectName, 
+      sProjectBrief, sProjectStatus, sConversionWorkload, 
+      sPProjectLeader, sectionVerify, instituteVerify, 
+      subsidyworkload, totalSum, bak1, 
+      bak2, bak3, bak4, 
+      remark)
+    values (#{id,jdbcType=BIGINT}, #{idTeacher,jdbcType=BIGINT}, #{year,jdbcType=VARCHAR}, 
+      #{term,jdbcType=VARCHAR}, #{classes,jdbcType=VARCHAR}, #{coursename,jdbcType=VARCHAR}, 
+      #{classhourofplan,jdbcType=VARCHAR}, #{jointclass,jdbcType=VARCHAR}, #{extracurricularexperiment,jdbcType=VARCHAR}, 
+      #{sum1,jdbcType=REAL}, #{coursedesign,jdbcType=VARCHAR}, #{onCampuspractice,jdbcType=VARCHAR}, 
+      #{offCampustraining,jdbcType=VARCHAR}, #{graduationpractice,jdbcType=VARCHAR}, 
+      #{sum2,jdbcType=REAL}, #{sum1addsum2,jdbcType=REAL}, #{rsrprojectname,jdbcType=VARCHAR}, 
+      #{rsrprojectbrief,jdbcType=VARCHAR}, #{rsrprojectstatus,jdbcType=VARCHAR}, #{rsrconversionworkload,jdbcType=VARCHAR}, 
+      #{rsrpprojectleader,jdbcType=VARCHAR}, #{rsrworkload,jdbcType=REAL}, #{sprojectname,jdbcType=VARCHAR}, 
+      #{sprojectbrief,jdbcType=VARCHAR}, #{sprojectstatus,jdbcType=VARCHAR}, #{sconversionworkload,jdbcType=VARCHAR}, 
+      #{spprojectleader,jdbcType=VARCHAR}, #{sectionverify,jdbcType=VARCHAR}, #{instituteverify,jdbcType=VARCHAR}, 
+      #{subsidyworkload,jdbcType=REAL}, #{totalsum,jdbcType=REAL}, #{bak1,jdbcType=LONGVARCHAR}, 
+      #{bak2,jdbcType=LONGVARCHAR}, #{bak3,jdbcType=LONGVARCHAR}, #{bak4,jdbcType=LONGVARCHAR}, 
+      #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hngy.educationaladministration.entity.WorkloadWithBLOBs">
+    insert into t_workload
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="idTeacher != null">
+        id_teacher,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+      <if test="term != null">
+        term,
+      </if>
+      <if test="classes != null">
+        classes,
+      </if>
+      <if test="coursename != null">
+        courseName,
+      </if>
+      <if test="classhourofplan != null">
+        classHourOfPlan,
+      </if>
+      <if test="jointclass != null">
+        jointClass,
+      </if>
+      <if test="extracurricularexperiment != null">
+        extracurricularExperiment,
+      </if>
+      <if test="sum1 != null">
+        sum1,
+      </if>
+      <if test="coursedesign != null">
+        courseDesign,
+      </if>
+      <if test="onCampuspractice != null">
+        on_campusPractice,
+      </if>
+      <if test="offCampustraining != null">
+        off_campusTraining,
+      </if>
+      <if test="graduationpractice != null">
+        GraduationPractice,
+      </if>
+      <if test="sum2 != null">
+        sum2,
+      </if>
+      <if test="sum1addsum2 != null">
+        sum1AddSum2,
+      </if>
+      <if test="rsrprojectname != null">
+        rsrProjectName,
+      </if>
+      <if test="rsrprojectbrief != null">
+        rsrProjectBrief,
+      </if>
+      <if test="rsrprojectstatus != null">
+        rsrProjectStatus,
+      </if>
+      <if test="rsrconversionworkload != null">
+        rsrConversionWorkload,
+      </if>
+      <if test="rsrpprojectleader != null">
+        rsrPProjectLeader,
+      </if>
+      <if test="rsrworkload != null">
+        rsrWorkload,
+      </if>
+      <if test="sprojectname != null">
+        sProjectName,
+      </if>
+      <if test="sprojectbrief != null">
+        sProjectBrief,
+      </if>
+      <if test="sprojectstatus != null">
+        sProjectStatus,
+      </if>
+      <if test="sconversionworkload != null">
+        sConversionWorkload,
+      </if>
+      <if test="spprojectleader != null">
+        sPProjectLeader,
+      </if>
+      <if test="sectionverify != null">
+        sectionVerify,
+      </if>
+      <if test="instituteverify != null">
+        instituteVerify,
+      </if>
+      <if test="subsidyworkload != null">
+        subsidyworkload,
+      </if>
+      <if test="totalsum != null">
+        totalSum,
+      </if>
+      <if test="bak1 != null">
+        bak1,
+      </if>
+      <if test="bak2 != null">
+        bak2,
+      </if>
+      <if test="bak3 != null">
+        bak3,
+      </if>
+      <if test="bak4 != null">
+        bak4,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="idTeacher != null">
+        #{idTeacher,jdbcType=BIGINT},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null">
+        #{classes,jdbcType=VARCHAR},
+      </if>
+      <if test="coursename != null">
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="classhourofplan != null">
+        #{classhourofplan,jdbcType=VARCHAR},
+      </if>
+      <if test="jointclass != null">
+        #{jointclass,jdbcType=VARCHAR},
+      </if>
+      <if test="extracurricularexperiment != null">
+        #{extracurricularexperiment,jdbcType=VARCHAR},
+      </if>
+      <if test="sum1 != null">
+        #{sum1,jdbcType=REAL},
+      </if>
+      <if test="coursedesign != null">
+        #{coursedesign,jdbcType=VARCHAR},
+      </if>
+      <if test="onCampuspractice != null">
+        #{onCampuspractice,jdbcType=VARCHAR},
+      </if>
+      <if test="offCampustraining != null">
+        #{offCampustraining,jdbcType=VARCHAR},
+      </if>
+      <if test="graduationpractice != null">
+        #{graduationpractice,jdbcType=VARCHAR},
+      </if>
+      <if test="sum2 != null">
+        #{sum2,jdbcType=REAL},
+      </if>
+      <if test="sum1addsum2 != null">
+        #{sum1addsum2,jdbcType=REAL},
+      </if>
+      <if test="rsrprojectname != null">
+        #{rsrprojectname,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrprojectbrief != null">
+        #{rsrprojectbrief,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrprojectstatus != null">
+        #{rsrprojectstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrconversionworkload != null">
+        #{rsrconversionworkload,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrpprojectleader != null">
+        #{rsrpprojectleader,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrworkload != null">
+        #{rsrworkload,jdbcType=REAL},
+      </if>
+      <if test="sprojectname != null">
+        #{sprojectname,jdbcType=VARCHAR},
+      </if>
+      <if test="sprojectbrief != null">
+        #{sprojectbrief,jdbcType=VARCHAR},
+      </if>
+      <if test="sprojectstatus != null">
+        #{sprojectstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sconversionworkload != null">
+        #{sconversionworkload,jdbcType=VARCHAR},
+      </if>
+      <if test="spprojectleader != null">
+        #{spprojectleader,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionverify != null">
+        #{sectionverify,jdbcType=VARCHAR},
+      </if>
+      <if test="instituteverify != null">
+        #{instituteverify,jdbcType=VARCHAR},
+      </if>
+      <if test="subsidyworkload != null">
+        #{subsidyworkload,jdbcType=REAL},
+      </if>
+      <if test="totalsum != null">
+        #{totalsum,jdbcType=REAL},
+      </if>
+      <if test="bak1 != null">
+        #{bak1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bak2 != null">
+        #{bak2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bak3 != null">
+        #{bak3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bak4 != null">
+        #{bak4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hngy.educationaladministration.entity.WorkloadExample" resultType="java.lang.Long">
+    select count(*) from t_workload
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_workload
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.idTeacher != null">
+        id_teacher = #{record.idTeacher,jdbcType=BIGINT},
+      </if>
+      <if test="record.year != null">
+        year = #{record.year,jdbcType=VARCHAR},
+      </if>
+      <if test="record.term != null">
+        term = #{record.term,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classes != null">
+        classes = #{record.classes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coursename != null">
+        courseName = #{record.coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classhourofplan != null">
+        classHourOfPlan = #{record.classhourofplan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jointclass != null">
+        jointClass = #{record.jointclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extracurricularexperiment != null">
+        extracurricularExperiment = #{record.extracurricularexperiment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sum1 != null">
+        sum1 = #{record.sum1,jdbcType=REAL},
+      </if>
+      <if test="record.coursedesign != null">
+        courseDesign = #{record.coursedesign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onCampuspractice != null">
+        on_campusPractice = #{record.onCampuspractice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.offCampustraining != null">
+        off_campusTraining = #{record.offCampustraining,jdbcType=VARCHAR},
+      </if>
+      <if test="record.graduationpractice != null">
+        GraduationPractice = #{record.graduationpractice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sum2 != null">
+        sum2 = #{record.sum2,jdbcType=REAL},
+      </if>
+      <if test="record.sum1addsum2 != null">
+        sum1AddSum2 = #{record.sum1addsum2,jdbcType=REAL},
+      </if>
+      <if test="record.rsrprojectname != null">
+        rsrProjectName = #{record.rsrprojectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsrprojectbrief != null">
+        rsrProjectBrief = #{record.rsrprojectbrief,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsrprojectstatus != null">
+        rsrProjectStatus = #{record.rsrprojectstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsrconversionworkload != null">
+        rsrConversionWorkload = #{record.rsrconversionworkload,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsrpprojectleader != null">
+        rsrPProjectLeader = #{record.rsrpprojectleader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rsrworkload != null">
+        rsrWorkload = #{record.rsrworkload,jdbcType=REAL},
+      </if>
+      <if test="record.sprojectname != null">
+        sProjectName = #{record.sprojectname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sprojectbrief != null">
+        sProjectBrief = #{record.sprojectbrief,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sprojectstatus != null">
+        sProjectStatus = #{record.sprojectstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sconversionworkload != null">
+        sConversionWorkload = #{record.sconversionworkload,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spprojectleader != null">
+        sPProjectLeader = #{record.spprojectleader,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sectionverify != null">
+        sectionVerify = #{record.sectionverify,jdbcType=VARCHAR},
+      </if>
+      <if test="record.instituteverify != null">
+        instituteVerify = #{record.instituteverify,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subsidyworkload != null">
+        subsidyworkload = #{record.subsidyworkload,jdbcType=REAL},
+      </if>
+      <if test="record.totalsum != null">
+        totalSum = #{record.totalsum,jdbcType=REAL},
+      </if>
+      <if test="record.bak1 != null">
+        bak1 = #{record.bak1,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.bak2 != null">
+        bak2 = #{record.bak2,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.bak3 != null">
+        bak3 = #{record.bak3,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.bak4 != null">
+        bak4 = #{record.bak4,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update t_workload
+    set id = #{record.id,jdbcType=BIGINT},
+      id_teacher = #{record.idTeacher,jdbcType=BIGINT},
+      year = #{record.year,jdbcType=VARCHAR},
+      term = #{record.term,jdbcType=VARCHAR},
+      classes = #{record.classes,jdbcType=VARCHAR},
+      courseName = #{record.coursename,jdbcType=VARCHAR},
+      classHourOfPlan = #{record.classhourofplan,jdbcType=VARCHAR},
+      jointClass = #{record.jointclass,jdbcType=VARCHAR},
+      extracurricularExperiment = #{record.extracurricularexperiment,jdbcType=VARCHAR},
+      sum1 = #{record.sum1,jdbcType=REAL},
+      courseDesign = #{record.coursedesign,jdbcType=VARCHAR},
+      on_campusPractice = #{record.onCampuspractice,jdbcType=VARCHAR},
+      off_campusTraining = #{record.offCampustraining,jdbcType=VARCHAR},
+      GraduationPractice = #{record.graduationpractice,jdbcType=VARCHAR},
+      sum2 = #{record.sum2,jdbcType=REAL},
+      sum1AddSum2 = #{record.sum1addsum2,jdbcType=REAL},
+      rsrProjectName = #{record.rsrprojectname,jdbcType=VARCHAR},
+      rsrProjectBrief = #{record.rsrprojectbrief,jdbcType=VARCHAR},
+      rsrProjectStatus = #{record.rsrprojectstatus,jdbcType=VARCHAR},
+      rsrConversionWorkload = #{record.rsrconversionworkload,jdbcType=VARCHAR},
+      rsrPProjectLeader = #{record.rsrpprojectleader,jdbcType=VARCHAR},
+      rsrWorkload = #{record.rsrworkload,jdbcType=REAL},
+      sProjectName = #{record.sprojectname,jdbcType=VARCHAR},
+      sProjectBrief = #{record.sprojectbrief,jdbcType=VARCHAR},
+      sProjectStatus = #{record.sprojectstatus,jdbcType=VARCHAR},
+      sConversionWorkload = #{record.sconversionworkload,jdbcType=VARCHAR},
+      sPProjectLeader = #{record.spprojectleader,jdbcType=VARCHAR},
+      sectionVerify = #{record.sectionverify,jdbcType=VARCHAR},
+      instituteVerify = #{record.instituteverify,jdbcType=VARCHAR},
+      subsidyworkload = #{record.subsidyworkload,jdbcType=REAL},
+      totalSum = #{record.totalsum,jdbcType=REAL},
+      bak1 = #{record.bak1,jdbcType=LONGVARCHAR},
+      bak2 = #{record.bak2,jdbcType=LONGVARCHAR},
+      bak3 = #{record.bak3,jdbcType=LONGVARCHAR},
+      bak4 = #{record.bak4,jdbcType=LONGVARCHAR},
+      remark = #{record.remark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_workload
+    set id = #{record.id,jdbcType=BIGINT},
+      id_teacher = #{record.idTeacher,jdbcType=BIGINT},
+      year = #{record.year,jdbcType=VARCHAR},
+      term = #{record.term,jdbcType=VARCHAR},
+      classes = #{record.classes,jdbcType=VARCHAR},
+      courseName = #{record.coursename,jdbcType=VARCHAR},
+      classHourOfPlan = #{record.classhourofplan,jdbcType=VARCHAR},
+      jointClass = #{record.jointclass,jdbcType=VARCHAR},
+      extracurricularExperiment = #{record.extracurricularexperiment,jdbcType=VARCHAR},
+      sum1 = #{record.sum1,jdbcType=REAL},
+      courseDesign = #{record.coursedesign,jdbcType=VARCHAR},
+      on_campusPractice = #{record.onCampuspractice,jdbcType=VARCHAR},
+      off_campusTraining = #{record.offCampustraining,jdbcType=VARCHAR},
+      GraduationPractice = #{record.graduationpractice,jdbcType=VARCHAR},
+      sum2 = #{record.sum2,jdbcType=REAL},
+      sum1AddSum2 = #{record.sum1addsum2,jdbcType=REAL},
+      rsrProjectName = #{record.rsrprojectname,jdbcType=VARCHAR},
+      rsrProjectBrief = #{record.rsrprojectbrief,jdbcType=VARCHAR},
+      rsrProjectStatus = #{record.rsrprojectstatus,jdbcType=VARCHAR},
+      rsrConversionWorkload = #{record.rsrconversionworkload,jdbcType=VARCHAR},
+      rsrPProjectLeader = #{record.rsrpprojectleader,jdbcType=VARCHAR},
+      rsrWorkload = #{record.rsrworkload,jdbcType=REAL},
+      sProjectName = #{record.sprojectname,jdbcType=VARCHAR},
+      sProjectBrief = #{record.sprojectbrief,jdbcType=VARCHAR},
+      sProjectStatus = #{record.sprojectstatus,jdbcType=VARCHAR},
+      sConversionWorkload = #{record.sconversionworkload,jdbcType=VARCHAR},
+      sPProjectLeader = #{record.spprojectleader,jdbcType=VARCHAR},
+      sectionVerify = #{record.sectionverify,jdbcType=VARCHAR},
+      instituteVerify = #{record.instituteverify,jdbcType=VARCHAR},
+      subsidyworkload = #{record.subsidyworkload,jdbcType=REAL},
+      totalSum = #{record.totalsum,jdbcType=REAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

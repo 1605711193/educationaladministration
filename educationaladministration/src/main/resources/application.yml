@@ -36,3 +36,5 @@ logging:
     com.zsq.communitymanagement.mapper: debug
 
 
+server:
+  port: 8081
