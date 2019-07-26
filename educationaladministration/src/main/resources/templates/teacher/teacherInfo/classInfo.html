@@ -20,9 +20,9 @@
 <body>
 <div class="wrapper">
 
-<!--    引入公共页面 public-index。html 的模块-->
-    <div class="main-header"  th:include="teacher/public-index :: header"></div>
-    <div class="sidebar"      th:include="teacher/public-index :: left"></div>
+    <!--    引入公共页面 public-index。html 的模块-->
+    <div  th:replace="teacher/public-teacher-index :: header"></div>
+    <div  th:replace="teacher/public-teacher-index :: left"></div>
 
     <div class="main-panel">
         <div class="content">

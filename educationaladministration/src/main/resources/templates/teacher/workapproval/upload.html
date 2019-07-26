@@ -22,74 +22,10 @@
 </head>
 <body>
 <div class="wrapper">
-    <div class="main-header">
-        <div class="logo-header">
-            <a href="index" class="logo">首页</a>
-            <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
-                    data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </div>
-    <div class="sidebar">
-        <div class="scrollbar-inner sidebar-wrapper">
-            <div class="user">
-                <div class="photo">
-                    <img th:src="@{/asserts/img/profile2.jpg}">
-                </div>
-                <div class="info">
-                    <a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								<span>
-                                    <span th:if="${session.teacherInfo.verifyFlag==1}">审核员</span>
-                                    <span th:if="${session.teacherInfo.verifyFlag==0}">教师</span>
-									<span class="user-level" th:text="${session.teacherInfo.name}"></span>
-									<span class="caret"></span>
-								</span>
-                    </a>
-                    <div class="clearfix"></div>
 
-                    <div class="collapse" id="collapseExample" aria-expanded="true">
-                        <ul class="nav">
-                            <li>
-                                <a href="studentinfo">
-                                    <span class="link-collapse">查看信息</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="modifyinfo">
-                                    <span class="link-collapse">修改信息</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="changepsw">
-                                    <span class="link-collapse">修改密码</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="exit">
-                                    <span class="link-collapse">退出</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <ul class="nav">
-                <li class="nav-item">
-                    <a th:href="@{/upload}">
-                        <i class="la la-keyboard-o"></i>
-                        <p>出差申请</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="classinfo">
-                        <i class="glyphicon glyphicon-zoom-in"></i>
-                        <p>查看本班选题情况</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <!--    引入公共页面 public-index。html 的模块-->
+    <div  th:replace="teacher/public-teacher-index :: header"></div>
+    <div  th:replace="teacher/public-teacher-index :: left"></div>
 
     <div class="main-panel">
         <div class="content">
