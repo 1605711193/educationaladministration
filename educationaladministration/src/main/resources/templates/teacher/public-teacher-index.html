@@ -23,9 +23,9 @@
 <div class="wrapper" >
 
 
-    <div th:fragment="header">
+    <div class="main-header"  th:fragment="header">
         <div class="logo-header">
-            <a href="index" class="logo">首页</a>
+            <a href="teacher/index" class="logo">首页</a>
             <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <div th:fragment="left">
+    <div  class="sidebar"   th:fragment="left">
         <div class="scrollbar-inner sidebar-wrapper">
             <div class="user">
                 <div class="photo">
@@ -128,33 +128,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="classinfo">
-                                    <i class="glyphicon glyphicon-zoom-in"></i>
-                                    <p>查看本班选题情况</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion"
-                               href="#collapseThree">
-                                模块三
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a th:href="@{/upload}">
-                                    <i class="la la-keyboard-o"></i>
-                                    <p>出差申请</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="classinfo">
+                                <a href="teacher/classinfo">
                                     <i class="glyphicon glyphicon-zoom-in"></i>
                                     <p>查看本班选题情况</p>
                                 </a>
@@ -164,7 +138,6 @@
                 </div>
 
             </div>
-
 
         </div>
     </div>
