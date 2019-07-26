@@ -21,6 +21,8 @@
 </head>
 <body>
 <div class="wrapper" >
+
+
     <div th:fragment="header">
         <div class="logo-header">
             <a href="index" class="logo">首页</a>
@@ -96,7 +98,13 @@
                             <li class="nav-item">
                                 <a href="classinfo">
                                     <i class="glyphicon glyphicon-zoom-in"></i>
-                                    <p>查看本班选题情况</p>
+                                    <p>申请详情</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="classinfo">
+                                    <i class="glyphicon glyphicon-zoom-in"></i>
+                                    <p>出差</p>
                                 </a>
                             </li>
                         </ul>
@@ -128,8 +136,36 @@
                         </ul>
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseThree">
+                                模块三
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a th:href="@{/upload}">
+                                    <i class="la la-keyboard-o"></i>
+                                    <p>出差申请</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="classinfo">
+                                    <i class="glyphicon glyphicon-zoom-in"></i>
+                                    <p>查看本班选题情况</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
             </div>
+
+
         </div>
     </div>
 
