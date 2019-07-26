@@ -30,4 +30,13 @@ public class Workapprovaltype {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Workapprovaltype{" +
+                "id=" + id +
+                ", typename='" + typename + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }
