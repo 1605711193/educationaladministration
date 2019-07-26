@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/asserts/css/demo.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/asserts/css/ready.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/asserts/css/ready.min.css}">
+
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+<!--    引入公共页面 public-index。html 的模块-->
+    <div class="main-header"  th:include="teacher/public-index :: header"></div>
+    <div class="sidebar"      th:include="teacher/public-index :: left"></div>
+
+    <div class="main-panel">
+        <div class="content">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <div class="card" style="width:100%;height:100%;">
+                        <div class="card-header">
+                            <h5 class="card-title">查看本班选题情况1</h5>
+                        </div>
+                        <div class="card-body">
+                                <div class="form-group text-center">
+                                    <button type="button" class="btn btn-primary">提交</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript" th:src="@{/webjars/jquery/1.9.1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</html>

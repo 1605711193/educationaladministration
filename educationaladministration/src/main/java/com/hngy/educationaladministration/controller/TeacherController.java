@@ -25,7 +25,7 @@ public class TeacherController {
 
     @GetMapping("/index")
     public String homePage(){
-        return "teacher/teacherInfo/teacherIndex";
+        return "teacher/public-teacher-index";
     }
 
     @GetMapping("/login")
@@ -40,4 +40,9 @@ public class TeacherController {
         return Msg.success().add("info", flag);
     }
 
+    @GetMapping("/classinfo")
+    public String classinfo()
+    {
+        return "teacher/teacherInfo/classInfo";
+    }
 }

@@ -3,11 +3,14 @@
 <head>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
-    <title>Title</title>
+
+    <title> 首页 </title>
+
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/asserts/css/demo.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/asserts/css/ready.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/asserts/css/ready.min.css}">
+
 
     <style>
         * {
@@ -17,8 +20,10 @@
     </style>
 </head>
 <body>
-<div class="wrapper">
-    <div class="main-header">
+<div class="wrapper" >
+
+
+    <div th:fragment="header">
         <div class="logo-header">
             <a href="index" class="logo">首页</a>
             <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
@@ -27,7 +32,8 @@
             </button>
         </div>
     </div>
-    <div class="sidebar">
+
+    <div th:fragment="left">
         <div class="scrollbar-inner sidebar-wrapper">
             <div class="user">
                 <div class="photo">
@@ -156,19 +162,16 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
 
-            <ul class="nav">
-                <li class="nav-item">
-                    <a th:href="@{/upload}">
-                        <p></p>
-                    </a>
-                </li>
-            </ul>
+
         </div>
     </div>
+
+
 </div>
-</div>
+
 </body>
 <script type="text/javascript" th:src="@{/webjars/jquery/1.9.1/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
